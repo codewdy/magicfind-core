@@ -27,16 +27,15 @@ function M.schedule(delay, runner)
 end
 
 function M.run()
-  M.current = M.current + 1
   local task = M.tasks[M.current]
-  if task == nil then
-    return
+  if task ~= nil then
+    for i=1,task.size do
+      task.vec[i].run(task.vec[i])
+    end
+    M.tasks[M.current] = nil
+    M.task_processor_pool.recycle(task)
   end
-  for i=1,task.size do
-    task.vec[i].run(task.vec[i])
-  end
-  M.tasks[M.current] = nil
-  M.task_processor_pool.recycle(task)
+  M.current = M.current + 1
 end
 
 function M.abort()
@@ -47,6 +46,7 @@ function M.abort()
     M.task_processor_pool.recycle(task)
   end
   M.tasks = {}
+  M.current = 0
 end
 
 return M
