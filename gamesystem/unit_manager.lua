@@ -59,7 +59,9 @@ function M.prepare_alive_units()
     local alive_units = M.alive_units[group]
     for i,_ in ipairs(alive_units) do alive_units[i] = nil end
     for _,i in ipairs(M.units[group]) do
-      table.insert(alive_units, i)
+      if not i.death then
+        table.insert(alive_units, i)
+      end
     end
   end
   M.prepare_nearby_units(M.player)
@@ -116,6 +118,37 @@ function M.random_nearby_unit(unit, group, radius, with_source)
       return nil
     else
       return M.nearby_alive_units[group][unit.id][math.random(size)]
+    end
+  end
+end
+
+function M.random_some_units(group, size, result, appointed_unit)
+  local vec = M.alive_units[group]
+  if (#vec < size) then
+    result.size = #vec
+    for i,v in ipairs(vec) do
+      result.vec[i] = vec[v]
+    end
+  else
+    local max_id = #vec
+    result.size = size
+    for i=1,size do
+      local id = math.random(max_id)
+      result.vec[i] = vec[id]
+      vec[id] = vec[max_id]
+      vec[max_id] = result.vec[i]
+    end
+    if appointed_unit ~= nil and appointed_unit.group == group then
+      local has_appointed = false
+      for i=1,size do
+        if result.vec[i] == appointed_unit then
+          has_appointed = true
+          break
+        end
+      end
+      if not has_appointed then
+        result.vec[1] = appointed_unit
+      end
     end
   end
 end
