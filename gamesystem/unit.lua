@@ -22,21 +22,6 @@ function M.obj_new()
         factor = 1.0,
         additionFactor = 1.0
       },
-      strength = {
-        flat = 0.0,
-        factor = 1.0,
-        additionFactor = 1.0
-      },
-      intelligence = {
-        flat = 0.0,
-        factor = 1.0,
-        additionFactor = 1.0
-      },
-      agility = {
-        flat = 0.0,
-        factor = 1.0,
-        additionFactor = 1.0
-      },
       onHit = {size = 0, vec = {}},
       onStruck = {size = 0, vec = {}},
       onKill = {size = 0, vec = {}},
@@ -94,18 +79,6 @@ function M.reset_status(unit)
   status.maxHp.factor = 1.0
   status.maxHp.additionFactor = 1.0
 
-  status.strength.flat = unit.prototype.strength
-  status.strength.factor = 1.0
-  status.strength.additionFactor = 1.0
-
-  status.intelligence.flat = unit.prototype.intelligence
-  status.intelligence.factor = 1.0
-  status.intelligence.additionFactor = 1.0
-
-  status.agility.flat = unit.prototype.agility
-  status.agility.factor = 1.0
-  status.agility.additionFactor = 1.0
-
   status.onHit.size = 0
   status.onStruck.size = 0
   status.onKill.size = 0
@@ -131,6 +104,9 @@ function M.update(unit)
   end
   for _,buff in pairs(unit.buffs) do
     buff.update(buff, unit)
+  end
+  for i=1,unit.prototype.post_buff_talents.size do
+    unit.prototype.post_buff_talents.vec[i].update(unit.prototype.post_buff_talents.vec[i], unit)
   end
   skill_runner.update(unit)
   for i=1,unit.status.onUpdate.size do

@@ -1,5 +1,6 @@
 local interface = require("gamesystem.interface")
 
+require("player.skills.all")
 require("units.all")
 require("enemies_group.all")
 

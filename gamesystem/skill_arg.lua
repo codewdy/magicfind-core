@@ -1,3 +1,16 @@
+--[[
+skill_arg = require("gamesystem.skill_arg").create({
+  type = ...,
+  factor = ...,
+  skill = ...,
+  element = ...,
+  chain_num = ...,
+  target_num = ...,
+  area_factor = ...,
+  damage_factor = ...,
+  effect_factor = ...
+})
+--]]
 local M = {}
 
 local unit_manager = require("gamesystem.unit_manager")
@@ -48,7 +61,8 @@ function M.prototype.onUpdate(arg, unit)
   end
 end
 
-function M.prototype.update(arg, unit)
+function M.prototype.update(arg, id, unit)
+  arg.id = id
   if arg.type == M.TIMEOUT then
     unit.status.onUpdate.size = unit.status.onUpdate.size + 1
     unit.status.onUpdate.vec[unit.status.onUpdate.size] = arg

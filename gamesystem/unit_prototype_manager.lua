@@ -16,6 +16,7 @@ function M.create()
     damage = 1,
     flat_damage_reducer = 0,
     talents = {vec = {}, size = 0},
+    post_buff_talents = {vec = {}, size = 0},
     skills = {vec = {}, size = 0},
   }
   M.prototypes[ret.handle] = ret
