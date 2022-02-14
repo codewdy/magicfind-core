@@ -1,9 +1,9 @@
 local M = {}
 
 local effect_manager = require("gamesystem.effect_manager")
-local effects = require("effects")
+local effects = require("content.effects")
 local unit_manager = require("gamesystem.unit_manager")
-local projectile = require("skills.utils.projectile")
+local projectile = require("content.skills.utils.projectile")
 
 function M.shoot(context, src, dest)
   effect_manager.add_effect(effects.lightning,

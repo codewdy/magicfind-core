@@ -8,6 +8,7 @@ local unit_prototype_manager = require("gamesystem.unit_prototype_manager")
 local effect_manager = require("gamesystem.effect_manager")
 local effect_proto_manager = require("gamesystem.effect_prototype_manager")
 local logger = require("logger")
+local skill_build = require("player.build.skill_build")
 
 M.context = {
   state = game_runner.state.Init,
@@ -57,5 +58,11 @@ end
 M.get_effect_prototype = effect_proto_manager.get
 
 M.init_logger = logger.InitLogger
+
+M.skill_build_add_modifier = skill_build.add_modifier
+M.skill_build_remove_modifier = skill_build.remove_modifier
+M.skill_build_line_modifier = skill_build.line_modifiers
+M.skill_build_max_line  = skill_build.get_max_line
+M.skill_build_max_resource  = skill_build.get_max_resource
 
 return M

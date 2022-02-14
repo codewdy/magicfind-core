@@ -6,16 +6,16 @@ M.add_modifier(idx, name)
 M.remove_modifier(idx, name)
 M.reset_line(idx)
 M.line_size()
-M.get_max_line(player)
+M.get_max_line()
 M.line_arg(idx, arg)
 M.line_modifiers(idx)
 M.line_resource(idx)
-M.get_enable_lines(player, result)
-M.get_resource(player)
-M.get_resource_max(player)
+M.get_enable_lines(result)
+M.get_resource()
+M.get_resource_max()
 
 -- For Player
-M.update_skills(player)
+M.update_skills()
 --]]
 
 local M = {}

@@ -1,17 +1,16 @@
 local M = {}
 
 local skill_modifier = require("player.skill_modifier")
-local skill_arg = require("gamesystem.skill_arg")
+local skills = require("content.skills.all")
 
 function M.modify(level, arg)
-  arg.type = skill_arg.TIMEOUT
-  arg.factor = 0.01
+  arg.skill = skills.lightning_chain
 end
 
 M.skill_modifier = {
-  name = "Timeout",
-  type = skill_modifier.TRIGGER,
-  group = { size = 2, vec = {"all", "trigger"} },
+  name = "LightningChain",
+  type = skill_modifier.CASTER,
+  group = { size = 2, vec = {"all", "caster"} },
   resource = 1,
   modify = M.modify
 }

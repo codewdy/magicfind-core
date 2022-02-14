@@ -1,8 +1,6 @@
 local interface = require("gamesystem.interface")
 
-require("player.skills.all")
-require("units.all")
-require("enemies_group.all")
+require("content.all")
 
 RunOneFrame = interface.run_one_frame
 GetUnitPrototype = interface.get_unit_prototype
